@@ -10,7 +10,7 @@ const loadButtonDiv = (items) => {
     const getDiv = document.getElementById('button')
     for (const item of items) {
 
-        console.log(item)
+        // console.log(item)
         const createDiv = document.createElement('div')
         createDiv.innerHTML = `<button onclick="clickCatagorey(${item.id})" class="btn"> 
         <img class="w-[25px] h-[25px]" src="${item.category_icon}"/>
@@ -34,9 +34,11 @@ const fetui = () => {
 fetui()
 const loadPet = (pets) => {
     const getPet = document.getElementById('pet-con')
-    getPet.innerHTML = ""
+    getPet.innerHTML = " "
 
     for (const pet of pets) {
+
+        console.log(pet)
 
         const petDiv = document.createElement('div')
 
@@ -58,7 +60,7 @@ const loadPet = (pets) => {
             <div class=" lg:flex items-center gap-5 ml-8 ">
                 <div> <button><img class="w-[28px] h-[25px] " src="https://img.icons8.com/?size=100&id=Ebizs5Duve0i&format=png&color=000000" />  </div> </button>
             <div> <button class="btn  text-green-500 font-semibold"> Adopt</button>  </div>
-            <div>  <button class="btn  text-green-500 "> Details</button> </div>
+            <div>  <button class="btn  text-green-500  " onclick="detailsPet(${pet.petId})"> Details</button> </div>
         </div>`
 
         getPet.appendChild(petDiv)
@@ -72,11 +74,43 @@ const loadPetCatagorey = () => {
 }
 const clickCatagorey = (id) => {
 
-    fetch(` https://openapi.programming-hero.com/api/peddy/pets ${id}`)
-        .then((res) => res.json())
-        .then((data) => loadPet(data.petData))
-        .catch((err) => console.log(err))
+    alert(id)
+    // fetch(`https://openapi.programming-hero.com/api/peddy/pet/${id}`)
+    //     .then((res) => res.json())
+    //     .then((data) => loadPet(data.category))
+    //     .catch((err) => console.log(err))
 }
+
+
+
+// This sectio  are make for details
+const detailsPet = async (detail) => {
+    const uri = ` https://openapi.programming-hero.com/api/peddy/pet/${detail}`
+    const res = await fetch(uri)
+    const data = await res.json()
+    loaddiscription(data.petId)
+}
+const loaddiscription = (dis) => {
+    const divcont = document.getElementById('modal-content')
+    document.getElementById('modalBtn').click()
+    divcont.innerHTML = `<h2><img src="${dis.image}"/></h2>`
+}
+
+const demo = {
+    "petId": 1,
+    "breed": "Golden Retriever",
+    "category": "Dog",
+    "date_of_birth": "2023-01-15",
+    "price": 1200,
+    "image": "https://i.ibb.co.com/p0w744T/pet-1.jpg",
+    "gender": "Male",
+    "pet_details": "This friendly male Golden Retriever is energetic and loyal, making him a perfect companion for families. Born on January 15, 2023, he enjoys playing outdoors and is especially great with children. Fully vaccinated, he's ready to join your family and bring endless joy. Priced at $1200, he offers love, loyalty, and a lively spirit for those seeking a playful yet gentle dog.",
+    "vaccinated_status": "Fully",
+    "pet_name": "Sunny"
+}
+
+
+
 
 
 
