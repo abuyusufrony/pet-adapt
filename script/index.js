@@ -88,12 +88,16 @@ const detailsPet = async (detail) => {
     const uri = ` https://openapi.programming-hero.com/api/peddy/pet/${detail}`
     const res = await fetch(uri)
     const data = await res.json()
-    loaddiscription(data.petId)
+    loaddiscription(data.petData)
 }
 const loaddiscription = (dis) => {
+    console.log(dis)
     const divcont = document.getElementById('modal-content')
     document.getElementById('modalBtn').click()
-    divcont.innerHTML = `<h2><img src="${dis.image}"/></h2>`
+    divcont.innerHTML = `<img src="${dis.image}/>" 
+    <p> ${dis.pet_details} </p>
+    <P> ${dis.price} </p>
+    <p> ${dis.vaccinated_status} </p>`
 }
 
 const demo = {
