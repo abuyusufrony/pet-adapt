@@ -69,7 +69,7 @@ This project is open-source and free to use.
 
 ---
 
-🔗 **GitHub Repository**: [https://github.com/abuyusufrony/pet-adapt]
+🔗 **GitHub Repository**:[https://github.com/abuyusufrony/pet-adapt
 
 
  
