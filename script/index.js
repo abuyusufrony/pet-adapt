@@ -10,7 +10,7 @@ const loadButtonDiv = (items) => {
     const getDiv = document.getElementById('button')
     for (const item of items) {
 
-        // console.log(item)
+        console.log(item)
         const createDiv = document.createElement('div')
         createDiv.innerHTML = `<button onclick="clickCatagorey(${item.id})" class="btn"> 
         <img class="w-[25px] h-[25px]" src="${item.category_icon}"/>
@@ -38,7 +38,7 @@ const loadPet = (pets) => {
 
     for (const pet of pets) {
 
-        console.log(pet)
+        // console.log(pet)
 
         const petDiv = document.createElement('div')
 
@@ -75,10 +75,10 @@ const loadPetCatagorey = () => {
 const clickCatagorey = (id) => {
 
     alert(id)
-    // fetch(`https://openapi.programming-hero.com/api/peddy/pet/${id}`)
-    //     .then((res) => res.json())
-    //     .then((data) => loadPet(data.category))
-    //     .catch((err) => console.log(err))
+    fetch(`https://openapi.programming-hero.com/api/peddy/category/dog`)
+        .then((res) => res.json())
+        .then((data) => loadPet(data.category))
+        .catch((err) => console.log(err))
 }
 
 
@@ -112,6 +112,14 @@ const demo = {
     "vaccinated_status": "Fully",
     "pet_name": "Sunny"
 }
+
+const petcata = async () => {
+    const res = await fetch('https://openapi.programming-hero.com/api/peddy/category/dog')
+    const data = await res.json()
+    console.log(data.data)
+
+}
+petcata()
 
 
 
